@@ -1,0 +1,13 @@
+.picture-of-the-day-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+@media (min-width: 480px) {
+    .picture-of-the-day {
+        position: relative;
+        width: 480px;
+    }
+}

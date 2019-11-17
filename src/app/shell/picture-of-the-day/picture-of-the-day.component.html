@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Astronomy Picture of the Day</mat-card-title>
+    </mat-card-header>
+
+    <ng-container *ngIf="pictureOfTheDay$ | async; let pictureOfTheDay">
+
+
+        <div class="picture-of-the-day-wrapper">
+            <div class="picture-of-the-day">
+                <div style="position: absolute;right: 0;">
+                    <a mat-button target="blank" [href]="pictureOfTheDay.hdurl">HD</a>
+                </div>
+
+                <img mat-card-image [src]="pictureOfTheDay.url" [alt]="pictureOfTheDay.title">
+            </div>
+        </div>
+
+
+        <mat-card-content>
+            <h4>{{ pictureOfTheDay.title }}</h4>
+            <p>
+                {{ pictureOfTheDay.explanation }}
+            </p>
+        </mat-card-content>
+
+    </ng-container>
+
+</mat-card>

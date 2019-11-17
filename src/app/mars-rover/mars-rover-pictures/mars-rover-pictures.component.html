@@ -1,0 +1,33 @@
+<div class="container">
+
+    <mat-card class="camera-selection-card">
+        <mat-card-header>
+            <mat-card-title>Selecione uma câmera</mat-card-title>
+        </mat-card-header>
+
+        <mat-action-list>
+            <button mat-list-item *ngFor="let camera of roverCameras$ | async" (click)="selectCamera(camera)"
+                [class.selected]="isCameraSelected(camera)">
+                <mat-icon mat-list-icon>photo_camera</mat-icon>
+                <h4 mat-line>{{ camera.name }}</h4>
+                <p mat-line>{{ camera.full_name }}</p>
+            </button>
+        </mat-action-list>
+    </mat-card>
+
+    <mat-card class="camera-pictures-list" *ngIf="roverCameraPictures$ | async; let roverCameraPictures">
+
+        <mat-card-header>
+            <mat-card-title>Selecione uma foto</mat-card-title>
+        </mat-card-header>
+
+        <mat-action-list>
+            <button mat-list-item *ngFor="let photo of roverCameraPictures" (click)="selectPhoto(photo)">
+                <h4 mat-line>{{ photo.id }}</h4>
+                <p mat-line>{{ photo.earth_date | date:'dd/MM/yyyy' }}</p>
+            </button>
+        </mat-action-list>
+    </mat-card>
+
+
+</div>
