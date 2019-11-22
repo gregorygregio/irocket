@@ -16,7 +16,8 @@ import { ShellComponent } from './shell.component';
 import { MainNavigationComponent } from './main-navigation/main-navigation.component';
 import { PictureOfTheDayComponent } from './picture-of-the-day/picture-of-the-day.component';
 import { NasaService } from '../services/nasa.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../interceptors/token.interceptor';
 
 
 @NgModule({
@@ -38,7 +39,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule
   ],
   providers: [
-    NasaService
+    NasaService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
   ]
 })
 export class ShellModule { }

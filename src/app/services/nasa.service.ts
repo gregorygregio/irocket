@@ -8,13 +8,13 @@ import { Camera } from '../models/camera';
 import { Photo } from '../models/photo';
 
 
-const { api, apiKey} = environment
+const { api } = environment
 
 
 @Injectable()
 export class NasaService {
 
-    public readonly pictureOfTheDay$ = this.http.get<PictureOfTheDay>(`${api}/planetary/apod?api_key=${apiKey}`)
+    public readonly pictureOfTheDay$ = this.http.get<PictureOfTheDay>(`${api}/planetary/apod`)
                             .pipe(
                                 shareReplay()
                             );
@@ -28,7 +28,7 @@ export class NasaService {
                                     .pipe(
                                         distinctUntilChanged(),
                                         switchMap( camera => 
-                                            this.http.get<{ photos: Photo[] }>(`${api}/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${apiKey}&camera=${camera}&page=1`)
+                                            this.http.get<{ photos: Photo[] }>(`${api}/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=${camera}&page=1`)
                                         ),
                                         map( response => response.photos instanceof Array ? response.photos : Object.values(response.photos) ),
                                         shareReplay()

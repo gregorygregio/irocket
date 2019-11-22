@@ -8,6 +8,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MarsPictureDialog } from './dialogs/mars-picture-dialog/mars-picture-dialog.component';
 import { MatDialogModule } from '@angular/material';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../interceptors/token.interceptor';
 
 
 @NgModule({
@@ -24,6 +26,13 @@ import { MatDialogModule } from '@angular/material';
   ],
   entryComponents: [
     MarsPictureDialog
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
   ]
 })
 export class MarsRoverModule { }
