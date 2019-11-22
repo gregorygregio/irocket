@@ -4,6 +4,8 @@ import { Camera } from 'src/app/models/camera';
 import { Photo } from 'src/app/models/photo';
 import { MatDialog } from '@angular/material';
 import { MarsPictureDialog } from '../dialogs/mars-picture-dialog/mars-picture-dialog.component';
+import { map } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-mars-rover-pictures',
@@ -15,7 +17,12 @@ export class MarsRoverPicturesComponent implements OnInit {
   selectedCamera: string;
   public readonly roverCameras$ = this.service.roverCameras$;
 
-  public readonly roverCameraPictures$ = this.service.roverCameraPictures$;
+
+  private roverCameraPicturesSearch = new BehaviorSubject<string>('');
+  public readonly roverCameraPictures$ = combineLatest(this.service.roverCameraPictures$, this.roverCameraPicturesSearch.asObservable())
+      	                  .pipe(
+                            map( ([photos, search]) => photos.filter( (photo: Photo) => photo.id.toString().includes(search)) )
+                          );
 
   constructor(
     private service: NasaService,
@@ -36,6 +43,11 @@ export class MarsRoverPicturesComponent implements OnInit {
       width: '720px',
       data: { url: photo.img_src }
     })
+  }
+
+
+  setSearch(search: string) {
+    this.roverCameraPicturesSearch.next(search);
   }
 
 }

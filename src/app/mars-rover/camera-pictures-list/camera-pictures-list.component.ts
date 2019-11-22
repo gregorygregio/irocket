@@ -10,8 +10,15 @@ export class CameraPicturesListComponent {
 
   @Input() roverCameraPictures: Photo[];
   @Output() photoSelected = new EventEmitter();
+  @Output() searchChange = new EventEmitter();
 
   onSelectPhoto(photo: Photo) {
     this.photoSelected.emit({ photo });
   }
+
+  onSearchChange(event: KeyboardEvent) {
+    const search = (<HTMLInputElement>event.target).value;
+    this.searchChange.emit({search});
+  }
+
 }

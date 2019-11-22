@@ -10,6 +10,7 @@
     <div class="camera-pictures-list" *ngIf="roverCameraPictures$ | async; let roverCameraPictures">
         <app-camera-pictures-list [roverCameraPictures]="roverCameraPictures"
             (photoSelected)="selectPhoto($event.photo)"
+            (searchChange)="setSearch($event.search)"
         ></app-camera-pictures-list>
     </div>
 

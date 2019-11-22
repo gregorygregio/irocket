@@ -2,6 +2,8 @@
 
     <mat-card-header>
         <mat-card-title>Selecione uma foto</mat-card-title>
+        <div class="fill-space"></div>
+        <input type="text" placeholder="Filtrar" class="search-input" (keyup)="onSearchChange($event)">
     </mat-card-header>
 
     <mat-action-list>
