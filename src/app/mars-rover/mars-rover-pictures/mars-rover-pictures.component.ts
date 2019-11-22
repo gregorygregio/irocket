@@ -38,8 +38,4 @@ export class MarsRoverPicturesComponent implements OnInit {
     })
   }
 
-  isCameraSelected(camera: Camera) {
-    return camera.name === this.selectedCamera;
-  }
-
 }

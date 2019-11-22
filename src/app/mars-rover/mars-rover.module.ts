@@ -10,10 +10,12 @@ import { MarsPictureDialog } from './dialogs/mars-picture-dialog/mars-picture-di
 import { MatDialogModule } from '@angular/material';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
+import { CameraSelectionListComponent } from './camera-selection-list/camera-selection-list.component';
+import { CameraPicturesListComponent } from './camera-pictures-list/camera-pictures-list.component';
 
 
 @NgModule({
-  declarations: [MarsRoverPicturesComponent, MarsPictureDialog],
+  declarations: [MarsRoverPicturesComponent, MarsPictureDialog, CameraSelectionListComponent, CameraPicturesListComponent],
   imports: [
     CommonModule,
     MarsRoverRoutingModule,

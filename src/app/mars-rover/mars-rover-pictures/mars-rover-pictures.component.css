@@ -18,12 +18,6 @@
 }
 
 
-.selected {
-    color: #69f0ae;
-    background: #303030;
-}
-
-
 @media(max-width: 480px) {
     .container {
         flex-wrap: wrap;

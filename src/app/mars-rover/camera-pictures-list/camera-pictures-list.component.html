@@ -1,0 +1,13 @@
+<mat-card>
+
+    <mat-card-header>
+        <mat-card-title>Selecione uma foto</mat-card-title>
+    </mat-card-header>
+
+    <mat-action-list>
+        <button mat-list-item *ngFor="let photo of roverCameraPictures" (click)="onSelectPhoto(photo)">
+            <h4 mat-line>{{ photo.id }}</h4>
+            <p mat-line>{{ photo.earth_date | date:'dd/MM/yyyy' }}</p>
+        </button>
+    </mat-action-list>
+</mat-card>
